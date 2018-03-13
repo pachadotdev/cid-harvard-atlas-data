@@ -97,3 +97,30 @@ names(ranking_2) <- c(
 try(dir.create("2-scraped-tables"))
 
 fwrite(ranking_2, "2-scraped-tables/ranking-2-expected-growth-in-per-capita-gdp-2020.csv")
+
+# * ranking 3 (p. 76-78, expected gdp growth to 2020) ---------------------
+
+table_p76 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 76)[[1]])
+table_p77 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 77)[[1]])
+table_p78 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 78)[[1]])
+
+ranking_3 <- bind_rows(table_p76, table_p77, table_p78)
+
+names(ranking_3) <- c(
+  "rank_expected_gdp_growth",
+  "regional_rank_expected_gdp_growth",
+  "country_name",
+  "iso_code",
+  "expected_gdp_growth_2009_2020",
+  "growth_1998_2008",
+  "rank_income_2009_usd",
+  "income_2009_usd",
+  "rank_income_2020",
+  "expected_income_2020_usd",
+  "expected_population_growth",
+  "region"
+)
+
+try(dir.create("2-scraped-tables"))
+
+fwrite(ranking_3, "2-scraped-tables/ranking-3-expected-gdp-growth-to-2020.csv")
