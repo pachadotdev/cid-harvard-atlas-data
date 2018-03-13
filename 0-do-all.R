@@ -1,5 +1,8 @@
 # Open oec-atlas-data.Rproj before running this script
 
+# RStudio server users: shiny apps don't work inside rstudio if you access via https://your.site/rstudio
+# use ssh to create a tunnel and access via localhost:8787
+
 if (!require("pacman")) install.packages("pacman")
 p_load(data.table, dplyr)
 p_load_gh("ropensci/tabulizer")
@@ -43,22 +46,18 @@ if (!file.exists(pdf_atlas_part_2) & file.exists(pdf_atlas_part_2_zip)) {
 # 2: pdf scraping ------------------------------------------------------------
 
 # this part is not automatic, you need to select areas
-# just omit the cyan first row in the pdf selector to get tidy columns
-# run the next subsections line by line when extract_areas appears (i.e lines 31-33)
+# just omit the colored rows of the tables in the pdf selector to get tidy columns
+# run the next subsections line by line when extract_areas appears
 
-# * extract countries table -------------------------------------------------
+# * ranking 1 (p. 64-66, economic complexity) -----------------------------
 
 table_p64 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 64)[[1]])
 table_p65 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 65)[[1]])
 table_p66 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 66)[[1]])
 
-table_p64 <- table_p64 %>% filter(row_number() > 5)
-table_p65 <- table_p65 %>% filter(row_number() > 5)
-table_p66 <- table_p66 %>% filter(row_number() > 5)
+ranking_1 <- bind_rows(table_p64, table_p65, table_p66)
 
-atlas_countries <- bind_rows(table_p64, table_p65, table_p66)
-
-names(atlas_countries) <- c(
+names(ranking_1) <- c(
   "rank_eci_complexity_2008",
   "regional_eci_ranking",
   "country_name",
@@ -71,4 +70,30 @@ names(atlas_countries) <- c(
 
 try(dir.create("2-scraped-tables"))
 
-fwrite(atlas_countries, "2-scraped-tables/atlas-countries.csv")
+fwrite(ranking_1, "2-scraped-tables/ranking-1-economic-complexity-index.csv")
+
+# * ranking 2 (p. 70-72, expected growth in per capita gdp 2020) ----------
+
+table_p70 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 70)[[1]])
+table_p71 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 71)[[1]])
+table_p72 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 72)[[1]])
+
+ranking_2 <- bind_rows(table_p70, table_p71, table_p72)
+
+names(ranking_2) <- c(
+  "rank_exp_growth_in_gdp_pc",
+  "regional_ranking_exp_growth_in_gdp_pc",
+  "country_name",
+  "iso_code",
+  "expected_growth_in_gdp_pc_2009_2020",
+  "growth_in_gdp_pc_1999_2009",
+  "rank_income_2009_usd",
+  "income_2009_usd",
+  "rank_income_2020",
+  "expected_income_2020_usd",
+  "region"
+)
+
+try(dir.create("2-scraped-tables"))
+
+fwrite(ranking_2, "2-scraped-tables/ranking-2-expected-growth-in-per-capita-gdp-2020.csv")
