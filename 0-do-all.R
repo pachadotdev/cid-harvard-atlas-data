@@ -124,3 +124,54 @@ names(ranking_3) <- c(
 try(dir.create("2-scraped-tables"))
 
 fwrite(ranking_3, "2-scraped-tables/ranking-3-expected-gdp-growth-to-2020.csv")
+
+# * ranking 4 (p. 82-84, changes in economic complexity 1964-2008) --------
+
+table_p82 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 82)[[1]])
+table_p83 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 83)[[1]])
+table_p84 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 84)[[1]])
+
+ranking_4 <- bind_rows(table_p82, table_p83, table_p84)
+
+names(ranking_4) <- c(
+  "ranking_delta_eci_64_08",
+  "regional_ranking_delta_eci_64_08",
+  "country_name",
+  "iso_code",
+  "y1964",
+  "y1968",
+  "y1978",
+  "y1988",
+  "y1998",
+  "y2008",
+  "delta_eci_64_08",
+  "delta_eci_98_08",
+  "ranking_delta_eci_98_08",
+  "regional_ranking_delta_eci_98_08",
+  "region"
+)
+
+try(dir.create("2-scraped-tables"))
+
+fwrite(ranking_4, "2-scraped-tables/ranking-4-change-in-economic-complexity-1964-2008.csv")
+
+# * ranking 5 (p. 88-90, expected contribution to world gdp growth --------
+
+table_p88 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 88)[[1]])
+table_p89 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 89)[[1]])
+table_p90 <- as_tibble(extract_areas(pdf_atlas_part_1, pages = 90)[[1]])
+
+ranking_5 <- bind_rows(table_p88, table_p89, table_p90)
+
+names(ranking_5) <- c(
+  "ranking_contribution_to_world_gdp_growth_to_2020",
+  "regional_ranking_contribution_to_world_gdp_growth_to_2020",
+  "country_name",
+  "iso_code",
+  "contribution_to_world_gdp_growth_to_2020",
+  "region"
+)
+
+try(dir.create("2-scraped-tables"))
+
+fwrite(ranking_5, "2-scraped-tables/ranking-5-expected-contribution-to-world-gdp-growth-to-2020.csv")
