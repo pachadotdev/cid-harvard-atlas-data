@@ -1,29 +1,20 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-OEC Atlas Data
+The Atlas of Economic Complexity Scraped Tables
 ==============
 
 Description
 -----------
 
-Scripts to recreate the trade data available at the [Observatory of Economic Complexity](http://atlas.media.mit.edu/en/).
-
-We have a repo explaining the methodological details. Please visit [OEC Documentation](https://observatory-economic-complexity.github.io/oec-documentation/) and the [Official website](http://atlas.media.mit.edu/en/) for the details.
-
-These scripts are released under MIT license.
+Scripts to scrap the tables from The Atlas of Economic Complexity
 
 How to use this project
 -----------------------
 
 While you can run the scripts from UNIX terminal, we highly recommend [RStudio](https://www.rstudio.com/).
 
-Each project is organized as an RStudio project. Each project contains a master script titled `0-some-function.R` at the top level but some projects such as *Product Space* are organized in subfolders where each subfolder contains a master script.
+Each project is organized as an RStudio project. You can read more about RStudio projects [here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects).
 
 The master script, for any case, runs a function with user prompt and/or simple scripts. The safe way to run this without errors is to open the project and then run the master script from RStudio.
-
-[OEC Packages Snapshot](https://github.com/observatory-economic-complexity/oec-packages-snapshot) stores all packages and its dependencies used across all repositories under this organization. To ease reproducibility [OEC Bundles](https://github.com/observatory-economic-complexity/oec-bundles) contains several bundles to avoid dependencies or packages related problems, and this project already contains an unbundled set of packages.
-
-You can read more about RStudio projects [here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects).
 
 Project structure
 -----------------
@@ -113,7 +104,7 @@ Here the version information about R, the OS and attached or loaded packages for
 The MIT License
 ---------------
 
-Copyright (c) 2017, Datawheel
+Copyright (c) 2017, Pacha
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
