@@ -5,7 +5,7 @@ The Atlas of Economic Complexity Scraped Tables
 Description
 -----------
 
-Scripts to scrap the tables from The Atlas of Economic Complexity
+Scripts to scrap the tables from the book 'The Atlas of Economic Complexity'.
 
 How to use this project
 -----------------------
@@ -19,7 +19,7 @@ The master script, for any case, runs a function with user prompt and/or simple 
 Project structure
 -----------------
 
-    oec-atlas-data
+    cid-harvard-atlas-data 
     └── README.md
     └── README.Rmd
     └── 0-do-all.R
